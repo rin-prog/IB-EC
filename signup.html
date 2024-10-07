@@ -113,7 +113,7 @@
             }
         }
 
-        document.getElementById('signupForm').addEventListener('submit', function(e)
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
             const fullName = document.getElementById('fullName').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
@@ -121,16 +121,19 @@
             const birthday = document.getElementById('birthday').value;
             
             if (!isValidEmail(email)) {
+                e.preventDefault(); 
                 alert('Please enter a valid email address with @ and ending with .com');
                 return;
             }
 
             if (password.length < minPasswordLength || password.length > maxPasswordLength) {
+                e.preventDefault(); 
                 alert(`Password must be between ${minPasswordLength} and ${maxPasswordLength} characters long.`);
                 return;
             }
             
             if (password !== confirmPassword) {
+                e.preventDefault(); 
                 alert("Passwords don't match!");
                 return;
             }
@@ -145,6 +148,7 @@
             const selectedYear = selectedDate.getFullYear();
 
             if (selectedYear >= 2015) {
+                e.preventDefault(); 
                 alert('You should be at least 18 years old! (year 2007 and below)');
                 birthdayInput.value = '';
             }
