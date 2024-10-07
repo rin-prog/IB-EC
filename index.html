@@ -107,7 +107,7 @@
 <body>
     <div class="container">
         <h1>Login</h1>
-        <form id="loginForm" action="authenticate.php" method="POST">
+        <form id="loginForm" action="loginSite.html" method="POST">
             <input type="text" id="email" name="email" placeholder="Email" required>
             <input type="password" id="password" name="password" placeholder="Password" required>
             <div class="password-toggle">
@@ -140,16 +140,17 @@
         }
         
         document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
             const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value;
             
             if (!isValidEmail(email)) {
+                e.preventDefault(); 
                 alert('Please enter a valid email address with @ and ending with .com');
                 return;
             }
             
             if (password.length < minPasswordLength || password.length > maxPasswordLength) {
+                e.preventDefault(); 
                 alert(`Password must be between ${minPasswordLength} and ${maxPasswordLength} characters long.`);
                 document.getElementById('password').value = '';
                 return;
@@ -158,7 +159,6 @@
             alert('Login successful!');
             document.getElementById('email').value = '';
             document.getElementById('password').value = '';
-            window.location.href = 'loginSite.html';
         });
     </script>
 </body>
